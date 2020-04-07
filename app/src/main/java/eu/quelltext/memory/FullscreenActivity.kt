@@ -1,16 +1,26 @@
 package eu.quelltext.memory
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
+import android.view.Window.FEATURE_NO_TITLE
+import android.view.WindowManager
+import android.webkit.ConsoleMessage
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_fullscreen.*
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
 class FullscreenActivity : AppCompatActivity() {
+    private var doubleBackToExitPressedOnce: Boolean = false;
+    private val BASE_URL = "file:///android_asset/memory.quelltext.eu/index.html"
     private val mHideHandler = Handler()
     private val mHidePart2Runnable = Runnable {
         // Delayed removal of status and navigation bar
@@ -18,7 +28,7 @@ class FullscreenActivity : AppCompatActivity() {
         // Note that some of these constants are new as of API 16 (Jelly Bean)
         // and API 19 (KitKat). It is safe to use them, as they are inlined
         // at compile-time and do nothing on earlier devices.
-        fullscreen_content.systemUiVisibility =
+        web_view.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LOW_PROFILE or
                         View.SYSTEM_UI_FLAG_FULLSCREEN or
                         View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
@@ -26,40 +36,31 @@ class FullscreenActivity : AppCompatActivity() {
                         View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                         View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
     }
-    private val mShowPart2Runnable = Runnable {
-        // Delayed display of UI elements
-        supportActionBar?.show()
-        fullscreen_content_controls.visibility = View.VISIBLE
-    }
-    private var mVisible: Boolean = false
     private val mHideRunnable = Runnable { hide() }
-    /**
-     * Touch listener to use for in-layout UI controls to delay hiding the
-     * system UI. This is to prevent the jarring behavior of controls going away
-     * while interacting with activity UI.
-     */
-    private val mDelayHideTouchListener = View.OnTouchListener { _, _ ->
-        if (AUTO_HIDE) {
-            delayedHide(AUTO_HIDE_DELAY_MILLIS)
-        }
-        false
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        requestWindowFeature(FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_fullscreen)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        getWindow().setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        mVisible = true
-
-        // Set up the user interaction to manually show or hide the system UI.
-        fullscreen_content.setOnClickListener { toggle() }
-
-        // Upon interacting with UI controls, delay any scheduled hide()
-        // operations to prevent the jarring behavior of controls going away
-        // while interacting with the UI.
-        dummy_button.setOnTouchListener(mDelayHideTouchListener)
+        web_view.loadUrl(BASE_URL);
+        val webSettings: WebSettings = web_view.getSettings()
+        webSettings.javaScriptEnabled = true
+        // from https://stackoverflow.com/a/40485201/1320237
+        web_view.setWebChromeClient(object : WebChromeClient() {
+            override fun onConsoleMessage(consoleMessage: ConsoleMessage): Boolean {
+                Log.d(
+                    "MyApplication", consoleMessage.message() + " -- From line "
+                            + consoleMessage.lineNumber() + " of "
+                            + consoleMessage.sourceId()
+                )
+                return super.onConsoleMessage(consoleMessage)
+            }
+        })
     }
 
     override fun onPostCreate(savedInstanceState: Bundle?) {
@@ -71,35 +72,12 @@ class FullscreenActivity : AppCompatActivity() {
         delayedHide(100)
     }
 
-    private fun toggle() {
-        if (mVisible) {
-            hide()
-        } else {
-            show()
-        }
-    }
-
     private fun hide() {
         // Hide UI first
         supportActionBar?.hide()
-        fullscreen_content_controls.visibility = View.GONE
-        mVisible = false
 
         // Schedule a runnable to remove the status and navigation bar after a delay
-        mHideHandler.removeCallbacks(mShowPart2Runnable)
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY.toLong())
-    }
-
-    private fun show() {
-        // Show the system bar
-        fullscreen_content.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-                        View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-        mVisible = true
-
-        // Schedule a runnable to display UI elements after a delay
-        mHideHandler.removeCallbacks(mHidePart2Runnable)
-        mHideHandler.postDelayed(mShowPart2Runnable, UI_ANIMATION_DELAY.toLong())
     }
 
     /**
@@ -129,5 +107,18 @@ class FullscreenActivity : AppCompatActivity() {
          * and a change of the status and navigation bar.
          */
         private val UI_ANIMATION_DELAY = 300
+    }
+
+    override fun onBackPressed() {
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            return
+        }
+        web_view.loadUrl(BASE_URL);
+        this.doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+
+        Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 }
