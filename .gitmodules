@@ -1,0 +1,3 @@
+[submodule "app/src/main/assets/memory.quelltext.eu"]
+	path = app/src/main/assets/memory.quelltext.eu
+	url = https://github.com/niccokunzmann/memory.quelltext.eu.git
