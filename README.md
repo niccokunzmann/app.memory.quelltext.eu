@@ -6,3 +6,5 @@ This is the Android app for the [memory game](http://memory.quelltext.eu).
 
 You can use Android Studio to develop the app.
 
+- [Issues](https://github.com/niccokunzmann/memory.quelltext.eu/issues) are those of the memory game.
+
