@@ -1,6 +1,6 @@
 # Android App for the Memory game
 
-This is the Android app for the [memory game](http://memory.quelltext.eu).
+This is the Android app for the [memory game](http://memory.quelltext.eu). ([Source](https://github.com/niccokunzmann/memory.quelltext.eu#readme))
 
 **[Download APK](https://niccokunzmann.github.io/download_latest/app-debug.apk)**
 
