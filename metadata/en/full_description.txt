@@ -1,4 +1,4 @@
-This memory is a lerning exprience for children aged 4+.
+This memory is a learning experience for children aged 4+.
 Through different challenges, they can learn counting, numerics and reading.
 
 The different game modes and adjustable levels of difficulty allow the child to play with and without guidance.
@@ -9,13 +9,13 @@ These modes can be played in three different difficulties, with six, twelve or t
 - big and small letters
 - adding numbers
 
-If you are a developer or want to become one, you can extend the game with the modes you would like to see in it.
 If you and your child like to play an additional game mode, please do not hesitate to contact us.
+If you are a developer or want to become one, you can extend the game with the modes you would like to see in it.
 The internal API and documentation make creating these extensions easy.
 The game is an open-source software under AGPL so that you are allowed to copy, distribute and modify it.
 
 Code of honor: This game is child and privacy friendly:
 - no advertisement
 - no communication over the Internet
-- all open-source and publicly disclosed
+- source is open and publicly disclosed
 - no in-app puchases
