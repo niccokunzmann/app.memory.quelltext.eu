@@ -13,4 +13,5 @@ You can use Android Studio to develop the app.
 Do this to update to the latest version:
 ```
 git pull --recurse-submodules
+( cd app/src/main/assets/memory.quelltext.eu/; git pull )
 ```
