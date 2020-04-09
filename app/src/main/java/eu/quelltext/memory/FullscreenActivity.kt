@@ -53,11 +53,11 @@ class FullscreenActivity : AppCompatActivity() {
         // from https://stackoverflow.com/a/40485201/1320237
         web_view.setWebChromeClient(object : WebChromeClient() {
             override fun onConsoleMessage(consoleMessage: ConsoleMessage): Boolean {
-                Log.d(
+                /*Log.d(
                     "MyApplication", consoleMessage.message() + " -- From line "
                             + consoleMessage.lineNumber() + " of "
                             + consoleMessage.sourceId()
-                )
+                )*/
                 return super.onConsoleMessage(consoleMessage)
             }
         })
