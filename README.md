@@ -8,3 +8,9 @@ You can use Android Studio to develop the app.
 
 - [Issues](https://github.com/niccokunzmann/memory.quelltext.eu/issues) are those of the memory game.
 
+### Updating
+
+Do this to update to the latest version:
+```
+git pull --recurse-submodules
+```
