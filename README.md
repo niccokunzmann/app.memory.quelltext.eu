@@ -2,6 +2,8 @@
 
 This is the Android app for the [memory game](http://memory.quelltext.eu).
 
+**[Download](https://niccokunzmann.github.io/download_latest/app-debug.apk)**
+
 ## Development
 
 You can use Android Studio to develop the app.
