@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "eu.quelltext.memory"
-        minSdkVersion 14
+        minSdkVersion 1
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
