@@ -1,0 +1,2 @@
+- Add and test compatibility with Android 4.1 (old browsers)
+- Make compatible with all Android versions
