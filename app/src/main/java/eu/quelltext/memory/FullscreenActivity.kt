@@ -1,9 +1,8 @@
 package eu.quelltext.memory
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
-import androidx.appcompat.app.AppCompatActivity
-import android.util.Log
 import android.view.View
 import android.view.Window.FEATURE_NO_TITLE
 import android.view.WindowManager
@@ -18,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_fullscreen.*
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class FullscreenActivity : AppCompatActivity() {
+class FullscreenActivity : Activity() {
     private var doubleBackToExitPressedOnce: Boolean = false;
     private val BASE_URL = "file:///android_asset/memory.quelltext.eu/index.html"
     private val mHideHandler = Handler()
@@ -74,7 +73,7 @@ class FullscreenActivity : AppCompatActivity() {
 
     private fun hide() {
         // Hide UI first
-        supportActionBar?.hide()
+        //supportActionBar?.hide()
 
         // Schedule a runnable to remove the status and navigation bar after a delay
         mHideHandler.postDelayed(mHidePart2Runnable, UI_ANIMATION_DELAY.toLong())
