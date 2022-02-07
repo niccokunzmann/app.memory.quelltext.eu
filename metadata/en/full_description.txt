@@ -8,6 +8,7 @@ These modes can be played in three different difficulties, with six, twelve or t
 - counting dots and finding the numbers
 - big and small letters
 - adding numbers
+- subtracting numbers
 
 If you and your child like to play an additional game mode, please do not hesitate to contact us.
 If you are a developer or want to become one, you can extend the game with the modes you would like to see in it.
