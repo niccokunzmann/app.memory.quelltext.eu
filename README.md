@@ -48,6 +48,6 @@ To release a new version:
 5. Create a tag named `v<versionName>` like `v1.3` if `versionName` is `"1.3"`:
     ```
     git tag v1.3 
-    git push v1.3
+    git push origin v1.3
     ```
     F-Droid should now pick up the new version and release the app.
