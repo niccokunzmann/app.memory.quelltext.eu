@@ -28,16 +28,42 @@ git pull --recurse-submodules
 cd app/src/main/assets/memory.quelltext.eu/
 git checkout master
 git pull origin master
+cd ..
+git add .
+git commit -m"update memory game"
 ```
 
-## New Version
+### Update Translations
+
+Install the [Transifex Command Line Client](https://github.com/transifex/transifex-client/) for Raspberry Pi and Android Phones.
+([Android](https://github.com/niccokunzmann/transifex-client-armv7l-binary)).
+You may be prompted to get an API token which you can get if you have an account..
+
+1. Push the translations.
+    ```
+    tx push --source
+    ```
+2. Update all translations.
+    ```
+    tx pull --all
+    ```
+3. Commit the changes.
+    ```
+    git add .
+    git commit -am"update translations"
+    git push
+    ```
+
+## New Release
 
 To release a new version:
 
-1. Edit `metadata/en/changelogs/<NO>.txt` to describe the changes.
-2. Edit `metadata/en/full_description.txt` to include the new features.
-3. Edit `app/build.gradle`, the `versionCode` and `versionName` variables.
-4. Create a commit and push it on the  master branch.
+1. Update the translations as mentioned above.
+2. Update the submodule as mentioned above.
+3. Edit `metadata/en/changelogs/<NO>.txt` to describe the changes.
+4. Edit `metadata/en/full_description.txt` to include the new features.
+5. Edit `app/build.gradle`, the `versionCode` and `versionName` variables.
+6. Create a commit and push it on the  master branch.
     ```
     git checkout master
     git add .
@@ -45,9 +71,10 @@ To release a new version:
     git diff   # check that all is right
     git commit -m"v1.3"
     ```
-5. Create a tag named `v<versionName>` like `v1.3` if `versionName` is `"1.3"`:
+7. Create a tag named `v<versionName>` like `v1.3` if `versionName` is `"1.3"`:
     ```
     git tag v1.3 
     git push origin v1.3
     ```
     F-Droid should now pick up the new version and release the app.
+
