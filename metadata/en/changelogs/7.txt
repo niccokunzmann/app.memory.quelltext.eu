@@ -1,0 +1,1 @@
+- fix launcher icon for Android 26+
