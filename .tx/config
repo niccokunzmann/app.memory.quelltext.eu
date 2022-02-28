@@ -25,3 +25,39 @@ source_file  = metadata/en/title.txt
 type         = TXT
 minimum_perc = 100
 
+
+[o:mundraub-android:p:learning-memory:r:fdroid-metadata-changelog-1]
+file_filter  = metadata/<lang>/changelogs/1.txt
+source_file  = metadata/en/changelogs/1.txt
+type         = TXT
+minimum_perc = 100
+
+[o:mundraub-android:p:learning-memory:r:fdroid-metadata-changelog-2]
+file_filter  = metadata/<lang>/changelogs/2.txt
+source_file  = metadata/en/changelogs/2.txt
+type         = TXT
+minimum_perc = 100
+
+[o:mundraub-android:p:learning-memory:r:fdroid-metadata-changelog-4]
+file_filter  = metadata/<lang>/changelogs/4.txt
+source_file  = metadata/en/changelogs/4.txt
+type         = TXT
+minimum_perc = 100
+
+[o:mundraub-android:p:learning-memory:r:fdroid-metadata-changelog-5]
+file_filter  = metadata/<lang>/changelogs/5.txt
+source_file  = metadata/en/changelogs/5.txt
+type         = TXT
+minimum_perc = 100
+
+[o:mundraub-android:p:learning-memory:r:fdroid-metadata-changelog-6]
+file_filter  = metadata/<lang>/changelogs/6.txt
+source_file  = metadata/en/changelogs/6.txt
+type         = TXT
+minimum_perc = 100
+
+[o:mundraub-android:p:learning-memory:r:fdroid-metadata-changelog-7]
+file_filter  = metadata/<lang>/changelogs/7.txt
+source_file  = metadata/en/changelogs/7.txt
+type         = TXT
+minimum_perc = 100

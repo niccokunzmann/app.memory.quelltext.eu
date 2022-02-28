@@ -39,15 +39,21 @@ Install the [Transifex Command Line Client](https://github.com/transifex/transif
 ([Android](https://github.com/niccokunzmann/transifex-client-armv7l-binary)).
 You may be prompted to get an API token which you can get if you have an account..
 
-1. Push the translations.
+1. Add the changelogs.
+    ```
+    bash ci/add_changelogs_to_transifex.sh
+    git add .tx
+    git commit -am"translate changelogs"
+    ```
+2. Push the translations.
     ```
     tx push --source
     ```
-2. Update all translations.
+3. Update all translations.
     ```
     tx pull --all
     ```
-3. Commit the changes.
+4. Commit the changes.
     ```
     git add .
     git commit -am"update translations"
@@ -58,12 +64,12 @@ You may be prompted to get an API token which you can get if you have an account
 
 To release a new version:
 
-1. Update the translations as mentioned above.
-2. Update the submodule as mentioned above.
-3. Edit `metadata/en/changelogs/<NO>.txt` to describe the changes.
-4. Edit `metadata/en/full_description.txt` to include the new features.
-5. Edit `app/build.gradle`, the `versionCode` and `versionName` variables.
-6. Create a commit and push it on the  master branch.
+1. Update the submodule as mentioned above.
+2. Edit `metadata/en/full_description.txt` to include the new features.
+3. Edit `app/build.gradle`, the `versionCode` and `versionName` variables.
+4. Edit `metadata/en/changelogs/<NO>.txt` to describe the changes.
+5. Update the translations as mentioned above.
+6. Create a commit and push it on the master branch.
     ```
     git checkout master
     git add .
